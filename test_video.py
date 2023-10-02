@@ -27,7 +27,7 @@ model_test.eval()
 print("Loading weights:", weights_file)
 
 if len(sys.argv) == 1:
-    testsets = 'baby-guitar-gun-drone-cattoy-water'
+    testsets = 'machine10'
 else:
     testsets = sys.argv[-1]
 testsets = testsets.split('-')
@@ -69,7 +69,7 @@ for testset in testsets:
             os.makedirs(video_dir)
         FPS = 30
         out = cv2.VideoWriter(
-            os.path.join(video_dir, '{}_amp{}.avi'.format(testset, amp)),
+            os.path.join(video_dir, '{}_amp{}.mp4'.format(testset, amp)),
             cv2.VideoWriter_fourcc(*'DIVX'),
             FPS, frames[0].shape[-2::-1]
         )
@@ -79,4 +79,4 @@ for testset in testsets:
                         fontFace=cv2.FONT_HERSHEY_SIMPLEX, fontScale=1, color=(0, 0, 255), thickness=2)
             out.write(frame)
         out.release()
-        print('{} has been done.'.format(os.path.join(video_dir, '{}_amp{}.avi'.format(testset, amp))))
+        print('{} has been done.'.format(os.path.join(video_dir, '{}_amp{}.mp4'.format(testset, amp))))
